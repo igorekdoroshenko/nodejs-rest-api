@@ -13,11 +13,7 @@ router.get("/:id", ctrl.getContactById);
 
 router.post("/", updateBody, validateBody(schemas.addSchema), ctrl.addContact);
 
-router.put(
-  "/:id",
-  updateBody, validateBody(schemas.addSchema),
-  ctrl.updateContact
-);
+router.put("/:id", updateBody, validateBody(schemas.updateSchema), ctrl.updateContact);
 
 router.delete("/:id", ctrl.removeContact);
 
