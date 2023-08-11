@@ -53,25 +53,21 @@ const addContact = async (body) => {
 
 const updateContact = async (contactId, body) => {
   const contacts = await listContacts();
-  const { name, email, phone } = body;
-
-  contacts.forEach((contact) => {
-    if (String(contact.id) === String(contactId)) {
-      if (name) contact.name = name;
-      if (email) contact.email = email;
-      if (phone) contact.phone = phone;
-    }
-  });
-  fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
-
-  const contact = contacts.filter(
-    ({ id }) => String(id) === String(contactId)
+  const index = contacts.findIndex(
+    (contact) => String(contact.id) === String(contactId)
   );
+  if (index === -1) {
+    return null;
+  }
 
-  if (contact.length === 0) return null;
+  const updatedContact = {...contacts[index],...body,};
+  contacts[index] = updatedContact;
 
-  return contact;
+  await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+
+  return updatedContact;
 };
+
 
 module.exports = {
   listContacts,
