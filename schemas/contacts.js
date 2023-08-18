@@ -15,9 +15,21 @@ const addSchema = Joi.object({
 });
 
 const updateSchema = Joi.object({
-  name: Joi.string(),
-  email: Joi.string(),
-  phone: Joi.string(),
+  name: Joi.string().messages({
+    "any.required": "missing required name field",
+  }),
+  email: Joi.string().messages({
+    "any.required": "missing required email field",
+  }),
+  phone: Joi.string().messages({
+    "any.required": "missing required phone field",
+  }),
 });
 
-module.exports = { addSchema, updateSchema, };
+const updateFavoriteSchema = Joi.object({
+  favorite: Joi.boolean()
+    .required()
+    .messages({ "any.required": "missing required field favorite" }),
+});
+
+module.exports = { addSchema, updateSchema, updateFavoriteSchema };
