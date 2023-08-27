@@ -14,6 +14,7 @@ const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
 
 app.use("/api/auth", authRouter);
 app.use("/api/contacts", contactsRouter);
@@ -28,3 +29,35 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
+
+
+
+// const fs = require("fs/promises");
+// const {nanoid}= require("nanoid");
+
+
+
+
+
+// const contacts = [];
+
+// app.get("api/contacts", (req, res) => {
+//   res.json(contacts);
+// });
+
+// const contactsDir = path.join(__dirname, "public", "contacts");
+// // controllers
+// app.post("api/contacts", uploud.single("cover"), async (req, res) => {
+//   const { path: tempUploud, originalname } = req.file;
+//   const resultUploud = path.join(contactsDir, originalname);
+//   await fs.rename(tempUploud, resultUploud);
+//   const cover = path.join("contacts", originalname)
+//   const newContacts = {
+//     id: nanoid(),
+//     ...req.body,
+//     cover,
+//   };
+//   contacts.push(newContacts);
+
+//   res.status(201).json(newContacts);
+// });
