@@ -25,10 +25,7 @@ const listContacts = async (req, res) => {
 const getContactById = async (req, res) => {
   const { id } = req.params;
   const { _id: owner } = req.user;
-  const result = await Contact.findOne(
-    { _id: id, owner },
-    "-createdAt -updatedAt"
-  );
+  const result = await Contact.findOne({ _id: id, owner });
   if (!result) {
     throw HttpError(404);
   }
@@ -48,7 +45,7 @@ const removeContact = async (req, res, next) => {
   if (!result) {
     throw HttpError(404);
   }
-  res.status(200).json(result);
+  res.status(200).json({ message: `Contact ${result.name} deleted` });
 };
 
 const updateContact = async (req, res) => {
