@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get("/", authenticate, ctrl.listContacts);
 
-router.get("/:id", authenticate, isValidId, ctrl.getContactById);
+router.get("/:id", isValidId, ctrl.getContactById);
 
 router.post(
   "/",

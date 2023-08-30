@@ -27,3 +27,10 @@ Uważnie czytaj komentarze mentora. Popraw uwagi i zrób commit na gałęzi z za
 - `npm run start:dev` &mdash; uruchamia serwer w trybie deweloperskim (development)
 - `npm run lint` &mdash; uruchamia sprawdzanie kodu z ESLint, należy wykonać przed każdym PR i poprawić wszystkie błędy lintera
 - `npm lint:fix` &mdash; to samo co powyższe, ale również automatycznie poprawia proste błędy.
+
+
+Ті хто дістався до 5го завдання, там немає нічого важкого, по основному завданню просто впевніться що ваша картинка після додавання змінює розмір та перезаписується, якщо завантажити картинку з тим самим ім'ям, що вже була.
+По тестам підказую. Гарний тест готує сам для себе данні та чистить їх після завершення, а не сподівається що щось буде в БД готове. Тому для авторизації гарним буде виконати такі кроки:
+1. Зарееструвати користувача
+2. перевірити коректність роботи авторизації для цього користувача
+3. видалити цього користувача
